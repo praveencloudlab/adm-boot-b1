@@ -8,3 +8,78 @@ Spring boot Data
 
 1.Jdbc Template
 ---------------------
+
+
+   Fetching operations
+=====================================
+
+
+
+   Generic Queries
+ ------------------------
+		When expecting a single row
+			– Use queryForMap(..)
+		When expecting multiple rows
+			– Use queryForList(..)
+
+
+	Domain Object Queries
+	---------------------------
+
+
+		1.RowMapper 
+		2.ResultSetExtractor
+		3.RowCallbackHandler
+
+
+     1.RowMapper 
+	---------------------
+		-> Spring provides a RowMapper interface for mapping a single row of a ResultSet
+        to an object
+	  -> Can be used for both single and multiple row queries
+    -> T mapRow(ResultSet rs, int rowNum)
+    -> can be used along with jdbcTemplate.queryForObject method for single row fetching
+    -> can be used along with jdbcTemplate.query method for multiple rows fetching
+
+
+
+  2.	ResultSetExtractor
+------------------------------
+	-> Spring provides a ResultSetExtractor interface for processing an entire ResultSet at once
+	–> You are responsible for iterating the ResultSet
+	-> T extractData(ResultSet rs) throws SQLException,DataAccessException; 
+
+   
+
+	3.RowCallbackHandler
+ ---------------------------------
+Spring provides a simpler RowCallbackHandler interface when there is no return object
+– Streaming rows to a file
+– Converting rows to XML
+– Filtering rows before adding to a Collection
+
+-> but filtering in SQL is much more efficient – Faster than JPA equivalent for big queries
+-> avoids result-set to object mapping
+-> void processRow(ResultSet rs) throws SQLException method must be implemented 
+
+
+
+
+DML operations
+=========================
+	-> insert
+	-> update
+	-> delete
+
+ 
+
+
+
+
+
+
+
+
+
+
+		
