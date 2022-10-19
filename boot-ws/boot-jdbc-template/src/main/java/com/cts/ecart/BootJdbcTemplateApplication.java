@@ -1,15 +1,12 @@
 package com.cts.ecart;
 
-import java.util.Map;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
-import com.cts.ecart.dao.ProductDao;
 import com.cts.ecart.dao.ProductDaoImpl;
 import com.cts.ecart.dao.ProductDaoLamdaImpl;
-import com.cts.ecart.model.Product;
 
 @SpringBootApplication
 public class BootJdbcTemplateApplication {
