@@ -1,9 +1,5 @@
 package com.cts.ecart;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,7 +7,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.data.domain.Sort;
 
 import com.cts.ecart.dao.ProductDao;
-import com.cts.ecart.entity.Product;
 
 @SpringBootApplication
 public class BootDatajpaApplication {
@@ -66,6 +61,8 @@ public class BootDatajpaApplication {
 		//filteredProds.forEach(System.out::println);
 		
 		prodDao.findAll(Sort.by(Sort.Direction.ASC,"productName")).forEach(System.out::println);
+		
+		
 			
 
 	}

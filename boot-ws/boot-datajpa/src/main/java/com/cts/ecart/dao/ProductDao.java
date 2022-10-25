@@ -9,4 +9,11 @@ public interface ProductDao extends JpaRepository<Product, Integer> {
 	
 	// 31 methods are available by default
 	
+	
+	// DSL => Domain specific language
+	
+	
+	
+	
+	
 }
