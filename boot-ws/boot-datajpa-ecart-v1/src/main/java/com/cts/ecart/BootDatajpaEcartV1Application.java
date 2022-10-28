@@ -1,13 +1,13 @@
 package com.cts.ecart;
 
+import java.security.SecureRandom;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Arrays;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.cts.ecart.dao.BrandDao;
 import com.cts.ecart.dao.CartDao;
@@ -18,7 +18,6 @@ import com.cts.ecart.dao.UserDao;
 import com.cts.ecart.entity.Brand;
 import com.cts.ecart.entity.Cart;
 import com.cts.ecart.entity.Category;
-import com.cts.ecart.entity.Order;
 import com.cts.ecart.entity.PriceInfo;
 import com.cts.ecart.entity.Product;
 import com.cts.ecart.entity.StockInfo;
@@ -39,14 +38,22 @@ public class BootDatajpaEcartV1Application {
 		CartDao cartDao = ac.getBean(CartDao.class);
 		OrderDao orderDao = ac.getBean(OrderDao.class);
 		
-		UserInfo u1=new UserInfo("user1", "user1", "Praveen", "Reddy", LocalDate.of(1983, 8, 21), "praveen@abc.com", 8787878787L, "Hyderabad");
-		UserInfo u2=new UserInfo("user2", "user2", "David", "Rodson", LocalDate.of(1981, 2, 22), "david@abc.com", 9749876545L, "Chennai");
-		UserInfo u3=new UserInfo("user3", "user3", "Rose", "Wine", LocalDate.of(1980, 2, 12), "rose@abc.com", 9854643234L, "Pune");
-		UserInfo u4=new UserInfo("user4", "user4", "Bucky", "Wall", LocalDate.of(1991, 9, 18), "bucky@abc.com", 7898098765L, "Kolkatha");
-		UserInfo u5=new UserInfo("user5", "user5", "Prashath", "Kumar", LocalDate.of(1978, 5, 29), "prashanth@abc.com", 6578989987L, "Delhi");
+		
+		
+		UserInfo u1=new UserInfo("user1", new BCryptPasswordEncoder(10,new SecureRandom()).encode("user1"), "Praveen", "Reddy", LocalDate.of(1983, 8, 21), "praveen@abc.com", 8787878787L, "Hyderabad");
+		UserInfo u2=new UserInfo("user2", new BCryptPasswordEncoder(10,new SecureRandom()).encode("user2"), "David", "Rodson", LocalDate.of(1981, 2, 22), "david@abc.com", 9749876545L, "Chennai");
+		UserInfo u3=new UserInfo("user3", new BCryptPasswordEncoder(10,new SecureRandom()).encode("user3"), "Rose", "Wine", LocalDate.of(1980, 2, 12), "rose@abc.com", 9854643234L, "Pune");
+		UserInfo u4=new UserInfo("user4", new BCryptPasswordEncoder(10,new SecureRandom()).encode("user4"), "Bucky", "Wall", LocalDate.of(1991, 9, 18), "bucky@abc.com", 7898098765L, "Kolkatha");
+		UserInfo u5=new UserInfo("user5", new BCryptPasswordEncoder(10,new SecureRandom()).encode("user5"), "Prashath", "Kumar", LocalDate.of(1978, 5, 29), "prashanth@abc.com", 6578989987L, "Delhi");
 
 		
 		//userDao.saveAll(Arrays.asList(u1,u2,u3,u4,u5));
+	
+		
+		UserInfo udata = userDao.findById(12).orElse(null);
+		System.out.println(udata);
+		System.out.println(new BCryptPasswordEncoder().matches("user2",udata.getPassword()));
+		
 		
 		
 		Cart ca1=new Cart(1, 1, 3);
