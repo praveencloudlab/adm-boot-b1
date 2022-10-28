@@ -27,21 +27,19 @@ public class Product {
 	private Brand brand;
 
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name = "productCat")
+	@JoinColumn(name = "categoryId")
 	private Category category;
-	
+
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "priceId")
 	private PriceInfo priceInfo;
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "stockId")
 	private StockInfo stockInfo;
-	
+
 	public Product() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	
 
 	public Product(String productTitle, String description, String keywords, double rating, Brand brand,
 			Category category, PriceInfo priceInfo, StockInfo stockInfo) {
@@ -55,7 +53,21 @@ public class Product {
 		this.stockInfo = stockInfo;
 	}
 
+	public PriceInfo getPriceInfo() {
+		return priceInfo;
+	}
 
+	public void setPriceInfo(PriceInfo priceInfo) {
+		this.priceInfo = priceInfo;
+	}
+
+	public StockInfo getStockInfo() {
+		return stockInfo;
+	}
+
+	public void setStockInfo(StockInfo stockInfo) {
+		this.stockInfo = stockInfo;
+	}
 
 	public Category getCategory() {
 		return category;
