@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body class="container">
+
+<div th:insert="/header::header"></div>
+<div th:insert="/menu::menu"></div>
+
+
+<hr/>
+
+
+ <form action="./saveProductV1" method="post">
+ 
+ Product Name: <input type="text" name="productTitle"> <br/>
+ Product Price: <input name="price.productPrice"><br/>
+ <select name="brand">
+    <option th:each="brand : ${brands}" th:value="${brand.brandId}" th:text="${brand.brandTitle}"></option>
+</select><br/>
+<select name="category">
+    <option value="0">select category</option>
+    <option th:each="category : ${categories}" th:value="${category.categoryId}" th:text="${category.categoryTitle}"></option>
+</select><br/>
+ Quantity: <input name="stock.stock"> <br/>
+ keywords: <input type="text" name="keywords"> <br/>
+ Product Description: <input type="text" name="description"> <br/>
+ 
+ 
+ <input type="submit" value="Save">
+ 
+ 
+ </form>
+
+
+
+
+
+</body>
+</html>
